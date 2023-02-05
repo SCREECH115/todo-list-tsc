@@ -9,38 +9,17 @@
   </head>
   <body>
     <form class="container" autocomplete="off">
-      <label for="name">Task:</label>
-      <input type="text" id="name" />
-      <ul class="categories">
-        <li>
-          <input
-            type="radio"
-            name="category"
-            value="general"
-            id="category-general"
-          />
-          <label for="category-general">general</label>
-        </li>
-        <li>
-          <input type="radio" name="category" value="work" id="category-work" />
-          <label for="category-work">work</label>
-        </li>
-        <li>
-          <input type="radio" name="category" value="gym" id="category-gym" />
-          <label for="category-gym">gym</label>
-        </li>
-        <li>
-          <input
-            type="radio"
-            name="category"
-            value="hobby"
-            id="category-hobby"
-          />
-          <label for="category-hobby">hobby</label>
-        </li>
-      </ul>
+      <label for="name" class="title">TASK PANEL</label>
+      <input
+        type="text"
+        id="name"
+        class="input-task"
+        placeholder="Input task here"
+      />
+      <ul class="categories"></ul>
       <button>Add</button>
-      <p>Todo:</p>
+      <hr />
+      <p class="tasks-list">Tasks</p>
       <ul class="tasks"></ul>
     </form>
 
