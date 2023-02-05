@@ -7,29 +7,35 @@ const tasksContainerEl: HTMLElement = document.querySelector(".tasks");
 const addBtnEl: HTMLButtonElement = document.querySelector("button");
 
 interface Task {
-  title: string;
+  name: string;
   done: boolean;
+  category?: string;
 }
 
+const categories: string[] = ["General", "Work", "Gym", "Hobby"];
+
 const tasks: Task[] = [
-  { title: "Wyrzucić śmieci", done: false },
-  { title: "Pójść na siłownię", done: true },
-  { title: "Nakarmić koty", done: false },
+  { name: "Wyrzucić śmieci", done: false },
+  { name: "Pójść na siłownię", done: true, category: "Gym" },
+  { name: "Nakarmić koty", done: false },
 ];
 
 const render = () => {
   tasksContainerEl.innerHTML = "";
   tasks.forEach((task, index) => {
     const taskElement: HTMLElement = document.createElement("li");
+    if (task.category) {
+      taskElement.classList.add(task.category);
+    }
     const id: string = `task-${index}`;
 
     const labelElement: HTMLElement = document.createElement("label");
-    labelElement.innerText = task.title;
+    labelElement.innerText = task.name;
     labelElement.setAttribute("for", id);
 
     const checkboxElement: HTMLInputElement = document.createElement("input");
     checkboxElement.type = "checkbox";
-    checkboxElement.name = task.title;
+    checkboxElement.name = task.name;
     checkboxElement.id = id;
     checkboxElement.checked = task.done;
     checkboxElement.addEventListener("change", () => {
@@ -49,7 +55,7 @@ const addTask = (task: Task) => {
 
 addBtnEl.addEventListener("click", (event: Event) => {
   event.preventDefault();
-  addTask({ title: taskNameInputEl.value, done: false });
+  addTask({ name: taskNameInputEl.value, done: false });
   render();
 });
 
