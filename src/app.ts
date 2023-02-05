@@ -11,10 +11,7 @@ interface Task {
   done: boolean;
 }
 
-const tasks: {
-  title: string;
-  done: boolean;
-}[] = [
+const tasks: Task[] = [
   { title: "Wyrzucić śmieci", done: false },
   { title: "Pójść na siłownię", done: true },
   { title: "Nakarmić koty", done: false },
@@ -46,7 +43,7 @@ const render = () => {
   });
 };
 
-const addTask = (task: { title: string; done: boolean }) => {
+const addTask = (task: Task) => {
   tasks.push(task);
 };
 
