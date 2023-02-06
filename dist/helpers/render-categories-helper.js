@@ -1,4 +1,4 @@
-export const render = (categories, categoriesContainerEl, selectedCategory) => {
+export const render = (categories, categoriesContainerEl, selectedCategory, inputChangeCallback) => {
     categories.forEach((category) => {
         const categoryEl = document.createElement("li");
         const radioInputEl = document.createElement("input");
@@ -7,10 +7,11 @@ export const render = (categories, categoriesContainerEl, selectedCategory) => {
         radioInputEl.value = category;
         radioInputEl.id = `category-${category}`;
         radioInputEl.addEventListener("change", () => {
-            selectedCategory = category;
+            inputChangeCallback(category);
         });
         const labelEl = document.createElement("label");
         labelEl.setAttribute("for", `category-${category}`);
+        labelEl.classList.add(`${category}`);
         labelEl.innerText = category;
         categoryEl.appendChild(radioInputEl);
         categoryEl.appendChild(labelEl);

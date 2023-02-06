@@ -3,7 +3,8 @@ import { Category } from "../types/types";
 export const render = (
   categories: Category[],
   categoriesContainerEl: HTMLElement,
-  selectedCategory: Category
+  selectedCategory: Category,
+  inputChangeCallback: (category: Category) => void
 ) => {
   categories.forEach((category) => {
     const categoryEl: HTMLElement = document.createElement("li");
@@ -14,11 +15,12 @@ export const render = (
     radioInputEl.value = category;
     radioInputEl.id = `category-${category}`;
     radioInputEl.addEventListener("change", () => {
-      selectedCategory = category;
+      inputChangeCallback(category);
     });
 
     const labelEl: HTMLLabelElement = document.createElement("label");
     labelEl.setAttribute("for", `category-${category}`);
+    labelEl.classList.add(`${category}`);
     labelEl.innerText = category;
 
     categoryEl.appendChild(radioInputEl);
