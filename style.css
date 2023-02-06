@@ -105,19 +105,23 @@ button:hover {
 
 .tasks input {
   /* margin-left: 8px; */
+  margin-top: 5px;
 }
 
-.gym {
-  /* color: darkblue; */
-  /* list-style: circle; */
+.General {
+  color: rgb(89, 47, 167);
 }
 
-.hobby {
-  color: darkgoldenrod;
+.Gym {
+  color: rgb(148, 52, 52);
 }
 
-.work {
-  text-decoration: underline;
+.Hobby {
+  color: rgb(100, 73, 5);
+}
+
+.Work {
+  color: rgb(76, 131, 39);
 }
 
 input[type="checkbox"] {
