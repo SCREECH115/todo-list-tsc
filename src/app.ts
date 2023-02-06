@@ -1,4 +1,4 @@
-import { Task, Category } from "./types/types";
+import { Task, Category } from "./types/types.js";
 import renderTasks from "./helpers/render-tasks-helper.js";
 import { render as renderCategories } from "./helpers/render-categories-helper.js";
 
@@ -9,13 +9,19 @@ const categoriesContainerEl: HTMLElement =
   document.querySelector(".categories");
 let selectedCategory: Category;
 
-const categories: Category[] = ["General", "Work", "Gym", "Hobby"];
+const categories: Category[] = [
+  Category.GENERAL,
+  Category.WORK,
+  Category.GYM,
+  Category.HOBBY,
+  Category.SOCIAL,
+];
 
 const tasks: Task[] = [
-  { name: "Wyrzucić śmieci", done: false, category: "General" },
-  { name: "Pójść na siłownię", done: false, category: "Gym" },
-  { name: "Nakarmić koty", done: false, category: "Work" },
-  { name: "Uczyć się JS", done: false, category: "Hobby" },
+  { name: "Wyrzucić śmieci", done: false, category: Category.GENERAL },
+  { name: "Pójść na siłownię", done: false, category: Category.GYM },
+  { name: "Nakarmić koty", done: false, category: Category.WORK },
+  { name: "Uczyć się JS", done: false, category: Category.HOBBY },
 ];
 
 const addTask = (task: Task) => {

@@ -4,4 +4,10 @@ export interface Task {
   category?: Category;
 }
 
-export type Category = "General" | "Work" | "Gym" | "Hobby";
+export enum Category {
+  GENERAL = "General",
+  WORK = "Work",
+  GYM = "Gym",
+  HOBBY = "Hobby",
+  SOCIAL = "Social",
+}

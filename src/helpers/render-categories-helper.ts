@@ -1,4 +1,23 @@
-import { Category } from "../types/types";
+import { Category } from "../types/types.js";
+
+const handleCategoryChange = (category: Category) => {
+  if (category === Category.GENERAL) {
+    console.log("asdasd");
+  } else if (category === Category.GYM) {
+    alert("sadasdsad");
+  } else if (category === Category.HOBBY) {
+    document.body.style.background = "red";
+  } else if (category === Category.WORK) {
+    document.body.style.background = "green";
+    alert("sadasdsad");
+    console.log("asdasd");
+  } else if (category === Category.SOCIAL) {
+    console.log("sociality");
+  } else {
+    const never: never = category;
+    console.log(never);
+  }
+};
 
 export const render = (
   categories: Category[],
@@ -16,6 +35,7 @@ export const render = (
     radioInputEl.id = `category-${category}`;
     radioInputEl.addEventListener("change", () => {
       inputChangeCallback(category);
+      handleCategoryChange(category);
     });
 
     const labelEl: HTMLLabelElement = document.createElement("label");
