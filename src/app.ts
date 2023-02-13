@@ -42,6 +42,16 @@ addBtnEl.addEventListener("click", (event: Event) => {
   renderTasks(tasks, tasksContainerEl);
 });
 
+type TaskAsTuple = [string, Category, boolean];
+
+const task: TaskAsTuple = ["zroic klatke", Category.GENERAL, false];
+
+const taskName = task[0];
+const taskCategory = task[1];
+const taskDoneStatus = task[2];
+
+addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
+
 renderCategories(
   categories,
   categoriesContainerEl,
