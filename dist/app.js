@@ -34,15 +34,17 @@ addBtnEl.addEventListener("click", (event) => {
     });
     renderTasks(tasks, tasksContainerEl);
 });
-const task = [
-    "zroic klatke",
-    Category.GENERAL,
-    false,
-];
+const task = ["zroic klatke", Category.GENERAL, false];
 const taskName = task[0];
 const taskCategory = task[1];
 const taskDoneStatus = task[2];
-console.log(taskName, taskCategory, taskDoneStatus);
 addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 renderCategories(categories, categoriesContainerEl, selectedCategory, updateSelectedCategory);
 renderTasks(tasks, tasksContainerEl);
+let newTask;
+newTask = {
+    name: "nowy task",
+    done: true,
+    createAt: new Date(),
+};
+console.log(newTask);

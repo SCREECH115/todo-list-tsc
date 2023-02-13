@@ -59,3 +59,23 @@ renderCategories(
   updateSelectedCategory
 );
 renderTasks(tasks, tasksContainerEl);
+
+interface TaskInterface {
+  name: string;
+  done: boolean;
+  category?: Category;
+}
+
+interface TaskInterface {
+  createAt: Date;
+}
+
+let newTask: TaskInterface;
+
+newTask = {
+  name: "nowy task",
+  done: true,
+  createAt: new Date(),
+};
+
+console.log(newTask);
