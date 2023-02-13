@@ -1,6 +1,7 @@
-import { Category } from "./types/types.js";
+import { Task, Category } from "./types/types.js";
 import renderTasks from "./helpers/render-tasks-helper.js";
 import { render as renderCategories } from "./helpers/render-categories-helper.js";
+import { TaskClass } from "./classes/task.js";
 const taskNameInputEl = document.querySelector("#name");
 const tasksContainerEl = document.querySelector(".tasks");
 const addBtnEl = document.querySelector("button");
@@ -14,10 +15,10 @@ const categories = [
     Category.SOCIAL,
 ];
 const tasks = [
-    { name: "Wyrzucić śmieci", done: false, category: Category.GENERAL },
-    { name: "Pójść na siłownię", done: false, category: Category.GYM },
-    { name: "Nakarmić koty", done: false, category: Category.WORK },
-    { name: "Uczyć się JS", done: false, category: Category.HOBBY },
+    new Task("Wyrzucić śmieci", false, Category.HOBBY),
+    new Task("Pójść na siłownię", false, Category.GYM),
+    new Task("Nakarmić koty", false, Category.WORK),
+    new Task("Wyrzucić śmieci", false),
 ];
 const addTask = (task) => {
     tasks.push(task);
@@ -27,24 +28,16 @@ const updateSelectedCategory = (newCategory) => {
 };
 addBtnEl.addEventListener("click", (event) => {
     event.preventDefault();
-    addTask({
-        name: taskNameInputEl.value,
-        done: false,
-        category: selectedCategory,
-    });
+    const newTask = new Task(taskNameInputEl.value, false, selectedCategory);
+    addTask(newTask);
+    newTask.logCreationDate("!!!");
     renderTasks(tasks, tasksContainerEl);
 });
-const task = ["zroic klatke", Category.GENERAL, false];
+const task = ["Kupić jedzenie", Category.GENERAL, false];
 const taskName = task[0];
 const taskCategory = task[1];
 const taskDoneStatus = task[2];
-addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 renderCategories(categories, categoriesContainerEl, selectedCategory, updateSelectedCategory);
 renderTasks(tasks, tasksContainerEl);
-let newTask;
-newTask = {
-    name: "nowy task",
-    done: true,
-    createAt: new Date(),
-};
-console.log(newTask);
+const taskClassInstance = new TaskClass("Constructor task", false, Category.SOCIAL);
+console.log(taskClassInstance.category);

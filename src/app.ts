@@ -1,6 +1,7 @@
 import { Task, Category } from "./types/types.js";
 import renderTasks from "./helpers/render-tasks-helper.js";
 import { render as renderCategories } from "./helpers/render-categories-helper.js";
+import { TaskClass } from "./classes/task.js";
 
 const taskNameInputEl: HTMLInputElement = document.querySelector("#name");
 const tasksContainerEl: HTMLElement = document.querySelector(".tasks");
@@ -18,10 +19,10 @@ const categories: Category[] = [
 ];
 
 const tasks: Task[] = [
-  { name: "Wyrzucić śmieci", done: false, category: Category.GENERAL },
-  { name: "Pójść na siłownię", done: false, category: Category.GYM },
-  { name: "Nakarmić koty", done: false, category: Category.WORK },
-  { name: "Uczyć się JS", done: false, category: Category.HOBBY },
+  new Task("Wyrzucić śmieci", false, Category.HOBBY),
+  new Task("Pójść na siłownię", false, Category.GYM),
+  new Task("Nakarmić koty", false, Category.WORK),
+  new Task("Wyrzucić śmieci", false),
 ];
 
 const addTask = (task: Task) => {
@@ -34,23 +35,43 @@ const updateSelectedCategory = (newCategory: Category) => {
 
 addBtnEl.addEventListener("click", (event: Event) => {
   event.preventDefault();
-  addTask({
-    name: taskNameInputEl.value,
-    done: false,
-    category: selectedCategory,
-  });
+  const newTask: Task = new Task(
+    taskNameInputEl.value,
+    false,
+    selectedCategory
+  );
+  addTask(newTask);
+  newTask.logCreationDate("!!!");
   renderTasks(tasks, tasksContainerEl);
 });
 
+// interface TaskInterface {
+//   name: string;
+//   done: boolean;
+//   category?: Category;
+// }
+
+// interface TaskInterface {
+//   createAt: Date;
+// }
+
+// let newTask: TaskInterface;
+
+// newTask = {
+//   name: "nowy task",
+//   done: true,
+//   createAt: new Date(),
+// };
+
+// console.log(newTask);
+
 type TaskAsTuple = [string, Category, boolean];
 
-const task: TaskAsTuple = ["zroic klatke", Category.GENERAL, false];
+const task: TaskAsTuple = ["Kupić jedzenie", Category.GENERAL, false];
 
 const taskName = task[0];
 const taskCategory = task[1];
 const taskDoneStatus = task[2];
-
-addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 
 renderCategories(
   categories,
@@ -60,22 +81,10 @@ renderCategories(
 );
 renderTasks(tasks, tasksContainerEl);
 
-interface TaskInterface {
-  name: string;
-  done: boolean;
-  category?: Category;
-}
+const taskClassInstance = new TaskClass(
+  "Constructor task",
+  false,
+  Category.SOCIAL
+);
 
-interface TaskInterface {
-  createAt: Date;
-}
-
-let newTask: TaskInterface;
-
-newTask = {
-  name: "nowy task",
-  done: true,
-  createAt: new Date(),
-};
-
-console.log(newTask);
+console.log(taskClassInstance.category);
